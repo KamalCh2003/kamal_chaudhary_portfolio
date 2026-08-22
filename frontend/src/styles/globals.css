@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #07080c;
+  --bg2: #0b0d13;
+  --text: #f6f7fb;
+  --muted: #8e94a4;
+  --line: rgba(255,255,255,0.09);
+  --blue: #7c9cff;
+  --purple: #b18cff;
+  --ease: cubic-bezier(.22,1,.36,1);
+}
+
+@layer base {
+  body {
+    @apply bg-[#07080c] text-[#f6f7fb] antialiased;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+  }
+}
+
+@layer utilities {
+  .glow-orb {
+    @apply fixed rounded-full pointer-events-none blur-[80px] opacity-20 z-0;
+  }
+  .mask-image-radial {
+    mask-image: radial-gradient(circle at center, black, transparent 68%);
+  }
+  .shadow-glow {
+    box-shadow: 0 0 14px #72e6a5;
+  }
+  .perspective-1800 {
+    perspective: 1800px;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    scrollbar-width: none;
+  }
+  .ease-custom {
+    transition-timing-function: cubic-bezier(.22, 1, .36, 1);
+  }
+}
+
+/* Keyframes & animations */
+@keyframes orb1 {
+  50% { transform: translate(130px, 90px) scale(1.2); }
+}
+@keyframes orb2 {
+  50% { transform: translate(-100px, -100px) scale(.8); }
+}
+@keyframes orb3 {
+  50% { transform: translate(70px, -80px) scale(1.2); }
+}
+@keyframes heroPulse {
+  50% { transform: translate(-50%, -50%) scale(1.1); opacity: .7; }
+}
+@keyframes blink {
+  50% { opacity: .35; transform: scale(.7); }
+}
+@keyframes gradientMove {
+  to { background-position: 220% center; }
+}
+@keyframes scroll {
+  50% { transform: scaleY(.45); transform-origin: top; }
+}
+@keyframes shine {
+  15%, 100% { transform: translateX(120%); }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(25px); }
+  to { opacity: 1; transform: none; }
+}
+
+.animate-orb1 { animation: orb1 15s ease-in-out infinite; }
+.animate-orb2 { animation: orb2 18s ease-in-out infinite; }
+.animate-orb3 { animation: orb3 14s ease-in-out infinite; }
+.animate-hero-pulse { animation: heroPulse 8s ease-in-out infinite; }
+.animate-blink { animation: blink 2s infinite; }
+.animate-gradient {
+  background-size: 220% auto;
+  animation: gradientMove 7s linear infinite;
+}
+.animate-scroll { animation: scroll 2s infinite; }
+.animate-shine { animation: shine 5s 1s infinite; }
+.animate-fade-up {
+  animation: fadeUp .9s cubic-bezier(.22,1,.36,1) both;
+}
+
+/* Reveal animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(35px);
+  transition: opacity .9s var(--ease), transform .9s var(--ease);
+}
+.reveal.show {
+  opacity: 1;
+  transform: none;
+}
+
+/* Feature card hover animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+
+.group:hover .float-icon {
+  animation: float 2s ease-in-out infinite;
+}
+
+/* Stats counter pulse */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+.stat-value {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
