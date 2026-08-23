@@ -12,22 +12,36 @@ const transporter = nodemailer.createTransport({
 
 export const sendMessage = async (req, res, next) => {
   try {
+    // Validate input
     const { error, value } = contactSchema.validate(req.body);
-    if (error) return res.status(400).json({ error: error.details[0].message });
+    if (error) {
+      return res.status(400).json({ error: error.details[0].message });
+    }
 
-    // Save to DB
-    const message = await prisma.message.create({ data: value });
+    const { name, email, message } = value;
+
+    // Save to database
+    const saved = await prisma.message.create({
+      data: { name, email, message },
+    });
 
     // Send email notification
     await transporter.sendMail({
       from: `"Portfolio Contact" <${process.env.CONTACT_EMAIL}>`,
       to: process.env.CONTACT_EMAIL,
-      subject: `New message from ${value.name}`,
-      html: `<p><strong>Name:</strong> ${value.name}</p>
-             <p><strong>Email:</strong> ${value.email}</p>
-             <p><strong>Message:</strong><br/>${value.message}</p>`,
+      subject: `New message from ${name}`,
+      html: `
+        <h3>New Contact Form Submission</h3>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Message:</strong><br/>${message}</p>
+        <hr/>
+        <small>Sent from your portfolio website.</small>
+      `,
     });
 
     res.status(201).json({ success: true, message: 'Message sent successfully' });
-  } catch (err) { next(err); }
+  } catch (err) {
+    next(err);
+  }
 };
