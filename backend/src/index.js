@@ -3,7 +3,6 @@ import cors from 'cors';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import dotenv from 'dotenv';
-import projectRoutes from './routes/projectRoutes.js';
 import contactRoutes from './routes/contactRoutes.js';
 import { errorHandler } from './middleware/errorHandler.js';
 
@@ -12,19 +11,17 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 5000;
 
-// Rate limiting
 const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 min
-  max: 100,
+  windowMs: 15 * 60 * 1000,
+  max: 10, // limit each IP to 10 requests per 15 min
 });
-app.use('/api', limiter);
+app.use('/api/contact', limiter);
 
 app.use(helmet());
 app.use(cors());
 app.use(express.json());
 
-// Routes
-app.use('/api/projects', projectRoutes);
+// Only contact routes now
 app.use('/api/contact', contactRoutes);
 
 app.get('/api/health', (req, res) => res.json({ status: 'OK' }));
