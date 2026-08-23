@@ -1,9 +1,6 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useProjectCarousel } from '../../hooks/useProjectCarousel';
 import { useScrollReveal } from '../../hooks/useScrollReveal';
-import axios from 'axios';
-
-const API = import.meta.env.VITE_API_URL;
 
 const defaultProjects = [
   {
@@ -74,35 +71,12 @@ const defaultProjects = [
 ];
 
 export const Projects = () => {
-  const [projects, setProjects] = useState(defaultProjects);
+  const [projects] = useState(defaultProjects);
   const { active, setActive, next, prev, setPaused } = useProjectCarousel(projects);
   const startX = useRef(0);
   const stageRef = useRef(null);
-  const fetchedRef = useRef(false);
   const isChanging = useRef(false);
   const ref = useScrollReveal();
-
-  useEffect(() => {
-    if (fetchedRef.current) return;
-    fetchedRef.current = true;
-
-    axios.get(`${API}/projects`)
-      .then(res => {
-        let data = null;
-        if (Array.isArray(res.data)) {
-          data = res.data;
-        } else if (res.data && typeof res.data === 'object') {
-          const possible = res.data.data || res.data.projects || res.data.items;
-          if (Array.isArray(possible)) {
-            data = possible;
-          }
-        }
-        if (data) {
-          setProjects(data);
-        }
-      })
-      .catch(() => {});
-  }, []);
 
   useEffect(() => {
     const stage = stageRef.current;
@@ -160,7 +134,7 @@ export const Projects = () => {
   };
 
   return (
-    <section id="projects" ref={ref} className="py-16 sm:py-24 md:py-32 reveal">
+    <section id="projects" ref={ref} className="py-16 sm:py-24 md:py-32 reveal bg-black/10">
       <div className="container px-4 sm:px-6 mx-auto">
         <div className="flex items-center gap-3 text-gray-500 text-[10px] font-mono uppercase tracking-widest before:w-6 before:h-px before:bg-gray-500">
           Selected work
