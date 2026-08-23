@@ -8,13 +8,13 @@ export const Hero = () => {
       <div className="absolute inset-0 opacity-20 bg-[url('data:image/svg+xml,...')] bg-[length:40px_40px] sm:bg-[length:60px_60px] md:bg-[length:70px_70px] mask-image-radial" />
       <div className="absolute w-[400px] h-[400px] sm:w-[600px] sm:h-[600px] md:w-[760px] md:h-[760px] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-blue-700/10 rounded-full blur-3xl animate-pulse" />
 
-      <div className="container relative z-10 px-4 sm:px-6">
+      <div className="h-[60vh] relative z-10 px-4 sm:px-6">
         <div className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 border border-white/10 rounded-full text-[10px] sm:text-xs font-mono text-gray-400 bg-white/5 animate-fade-up">
           <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-emerald-400 shadow-glow animate-pulse" />
           AVAILABLE FOR OPPORTUNITIES
         </div>
 
-        <h1 className="mt-5 sm:mt-6 text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-medium leading-[0.9] tracking-tight">
+        <h1 className="mt-20 sm:mt-6 text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-medium leading-[1.3] tracking-tight">
           I build{' '}
           <span className="block bg-gradient-to-r from-white via-blue-200 to-purple-300 bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient">
             digital experiences.
@@ -25,11 +25,11 @@ export const Hero = () => {
           Full-stack developer focused on elegant interfaces, reliable systems and immersive web experiences that make products feel effortless.
         </p>
 
-        <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row justify-center gap-3">
+        <div className="mt-20 sm:mt-8 flex flex-col sm:flex-row justify-center gap-4">
           <Button variant="primary" size="lg" onClick={() => scrollTo('projects')} className="w-full sm:w-auto">
             Explore my work →
           </Button>
-          <Button variant="dark" size="lg" onClick={() => scrollTo('contact')} className="w-full sm:w-auto">
+          <Button variant="dark" size="lg" onClick={() => scrollTo('contact')} className="w-full sm:w-auto bg-black/10">
             Get in touch
           </Button>
         </div>
