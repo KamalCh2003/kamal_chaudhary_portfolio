@@ -1,14 +1,33 @@
 import { useRef, useEffect, useState } from 'react';
 
 export const BackgroundRippleEffect = ({
-  rows = 12,
-  cols = 18,
-  gap = 4,
-  rippleDuration = 700,
-  opacity = 0.5,
+  rowsDesktop = 12,
+  colsDesktop = 18,
+  rowsMobile = 6,
+  colsMobile = 10,
+  gapDesktop = 4,
+  gapMobile = 6,
+  opacityDesktop = 0.4,
+  opacityMobile = 0.2,
+  rippleDuration = 600,
 }) => {
   const [ripples, setRipples] = useState([]);
   const containerRef = useRef(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  const rows = isMobile ? rowsMobile : rowsDesktop;
+  const cols = isMobile ? colsMobile : colsDesktop;
+  const gap = isMobile ? gapMobile : gapDesktop;
+  const opacity = isMobile ? opacityMobile : opacityDesktop;
 
   const grid = [];
   for (let i = 0; i < rows; i++) {
@@ -18,6 +37,11 @@ export const BackgroundRippleEffect = ({
   }
 
   useEffect(() => {
+    if (isMobile) {
+      setRipples([]);
+      return;
+    }
+
     const container = containerRef.current;
     if (!container) return;
 
@@ -70,7 +94,7 @@ export const BackgroundRippleEffect = ({
       window.removeEventListener('resize', updatePositions);
       setRipples([]);
     };
-  }, [rippleDuration]);
+  }, [isMobile, rippleDuration]);
 
   return (
     <div
