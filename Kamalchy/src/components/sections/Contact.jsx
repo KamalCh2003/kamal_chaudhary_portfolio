@@ -8,15 +8,15 @@ export const Contact = () => {
     <section
       id="contact"
       ref={ref}
-      className="py-16 sm:py-24 md:py-32 reveal bg-black/50"
+      className="py-16 sm:py-24 md:py-32 reveal"
     >
       <div className="container px-4 sm:px-6 mx-auto">
         <div className="flex items-center gap-3 text-gray-500 text-[10px] font-mono uppercase tracking-widest before:w-6 before:h-px before:bg-gray-500">
           Contact
         </div>
 
-        <div className="mt-6 sm:mt-8 p-5 sm:p-8 md:p-12 border border-white/10 rounded-2xl sm:rounded-3xl bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-transparent relative overflow-hidden">
-          <div className="absolute -right-20 sm:-right-40 -top-20 sm:-top-40 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] bg-blue-500/10 rounded-full blur-3xl" />
+        <div className="mt-6 sm:mt-8 p-5 sm:p-8 md:p-12 border border-white/10 rounded-2xl sm:rounded-3xl bg-gradient-to-br from-black-500 via-white-500/5 to-transparent relative overflow-hidden">
+          <div className="absolute -right-20 sm:-right-40 -top-20 sm:-top-40 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] bg-black-500/10 rounded-full blur-3xl" />
 
           <div className="grid md:grid-cols-2 gap-8 sm:gap-12 relative z-10">
             <div className="flex flex-col gap-4 sm:gap-6">
@@ -29,7 +29,8 @@ export const Contact = () => {
                 </p>
               </div>
 
-              <div className="flex items-center justify-center">
+              {/* SVG Illustration – hidden on mobile, visible on sm+ */}
+              <div className="hidden sm:flex items-center justify-center">
                 <svg
                   viewBox="0 0 400 350"
                   xmlns="http://www.w3.org/2000/svg"
