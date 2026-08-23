@@ -36,8 +36,10 @@ export const Navbar = () => {
 
   return (
     <nav
-      className={`fixed left-1/2 -translate-x-1/2 z-50 transition-all duration-300 ${
-        scrolled ? 'top-3 w-[69vw] max-w-5xl' : 'top-0 w-[92vw] max-w-7xl'
+      className={`fixed left-1/2 -translate-x-1/2 z-50 transition-all duration-300 w-full max-w-full top-0 ${
+        scrolled
+          ? 'md:top-3 md:w-[69vw] md:max-w-5xl'
+          : 'md:top-0 md:w-[92vw] md:max-w-7xl'
       }`}
     >
       <div className="flex items-center justify-between h-14 px-4 border border-white/10 rounded-2xl bg-black/60 backdrop-blur-xl shadow-2xl">
@@ -82,7 +84,9 @@ export const Navbar = () => {
               key={id}
               onClick={() => scrollTo(id)}
               className={`px-3 py-2 rounded-lg text-left text-sm transition-colors ${
-                active === id ? 'text-white bg-white/10' : 'text-gray-400 hover:text-white'
+                active === id
+                  ? 'text-white bg-white/10'
+                  : 'text-gray-400 hover:text-white'
               }`}
             >
               {id.charAt(0).toUpperCase() + id.slice(1)}
