@@ -14,11 +14,14 @@ function App() {
     <>
       <CursorGlow />
       <BackgroundRippleEffect 
-        rows={12} 
-        cols={18} 
-        boxSize={40} 
-        gap={5} 
-        opacity={0.4}
+        rowsDesktop={12} 
+        colsDesktop={18} 
+        rowsMobile={6} 
+        colsMobile={10}
+        gapDesktop={4}
+        gapMobile={6}
+        opacityDesktop={0.4}
+        opacityMobile={0.2}
         rippleDuration={600}
       />
       <Navbar />
