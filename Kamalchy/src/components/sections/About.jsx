@@ -68,7 +68,7 @@ export const About = () => {
           ].map((item, i) => (
             <div
               key={i}
-              className="border-r border-b border-white/20 p-6 sm:p-8 hover:bg-gray-50 transition-colors"
+              className="border-r border-b border-white/20 p-6 sm:p-8"
             >
               <div
                 ref={(el) => (statRefs.current[i] = el)}
