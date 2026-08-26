@@ -62,7 +62,7 @@ export const Skills = () => {
   }, []);
 
   return (
-    <section ref={ref} className="py-16 sm:py-24 md:py-32 reveal bg-[#07080c]">
+    <section ref={ref} className="py-16 sm:py-24 md:py-32 reveal">
       <div className="container px-4 sm:px-6 mx-auto">
         <div className="flex flex-col gap-4 mb-10 sm:mb-14">
           <span className="text-sm font-semibold text-gray-400 tracking-[0.22em] uppercase">
